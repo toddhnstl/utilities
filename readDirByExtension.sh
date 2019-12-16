@@ -16,6 +16,8 @@ if [ $# -gt 0 ]; then
     echo "Your command line contains $# arguments"
 else
     echo "Your command line contains no arguments"
+    echo " ----   EXITING  ----"
+    exit 1
 fi
 
 weeknum=$1
@@ -23,21 +25,21 @@ classday=$2
 fileExt=$3
 filename=$4
 
-echo "Week is: $weeknum, classday is $classday, output file is: $filename"
+echo "Week is: $weeknum, classday is $classday, extension is $fileExt, output file is: $filename"
 
 
 
 
 # check if file exists and determine what to do.
 if [ -f $filename ]; then
-    echo -n "Output file exists. Overwrite? (y/n) > "
+    echo -n "Output file exists. Overwrite? (y/n/other exits) > "
     read response
     if [ "$response" = "y" ]; then
         echo "######  OVERWRITE  #########"
         echo "######  OVERWRITE  #########" > $filename
 
     elif [ "$response" = "n" ]; then
-        echo "Appending "
+        echo ">>> Appending "
         echo "## Appending " >> $filename
 
      else
@@ -50,7 +52,7 @@ fi
 
 echo "#####----------------###" >> $filename
 echo "#####----------------###" >> $filename
-echo "#####  WEEK NUMBER $weeknum  #########" >> $filename
+echo "#####  BEGIN WEEK NUMBER $weeknum  #########" >> $filename
 echo "#####  class day $classday  #########" >> $filename
 echo "#####" >> $filename
 echo "" >> $filename
@@ -73,8 +75,8 @@ echo "" >> $filename
 echo "" >> $filename
 echo "#####----------------###" >> $filename
 echo "#####----------------###" >> $filename
-echo "#####  END OF WEEK NUMBER $weeknum" >> $filename
-echo "#####  END OF class day $classday" >> $filename
+echo "#####  END WEEK NUMBER $weeknum" >> $filename
+echo "#####  END class day $classday" >> $filename
 echo "########################" >> $filename
 echo "" >> $filename
 echo "" >> $filename
